@@ -23,7 +23,10 @@ RUN wget --progress=bar:force -O - https://jenkins-ci.org/debian/jenkins-ci.org.
 	&& rm -rf /var/lib/apt/lists/*
 
 
-
+# Install Jenkins plugins from the specified list
+COPY plugins.sh /usr/local/bin/plugins.sh
+RUN chmod +x /usr/local/bin/plugins.sh; sleep 1 \
+	&& /usr/local/bin/plugins.sh $JENKINS_HOME/plugins.txt
 
 
 # Install Docker from Docker Inc. repositories.
@@ -33,10 +36,10 @@ RUN pwd && ls &&  tar zxf docker-${DOCKER_VERSION}.tgz -C /
 
 # Install Docker Compose
 ENV DOCKER_COMPOSE_VERSION 1.8.0
-RUN curl -L https://get.daocloud.io/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose \
-    && chmod +x /usr/local/bin/docker-compose
-#RUN curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose \
-#	&& chmod +x /usr/local/bin/docker-compose
+RUN curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose \
+	&& chmod +x /usr/local/bin/docker-compose
+#RUN curl -L https://get.daocloud.io/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose \
+#    && chmod +x /usr/local/bin/docker-compose
 
 
 # Make the jenkins user a sudoer
