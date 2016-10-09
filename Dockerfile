@@ -25,6 +25,7 @@ RUN wget --progress=bar:force -O - https://jenkins-ci.org/debian/jenkins-ci.org.
 
 # Install Jenkins plugins from the specified list
 COPY plugins.sh /usr/local/bin/plugins.sh
+COPY plugins.txt $JENKINS_HOME/
 RUN chmod +x /usr/local/bin/plugins.sh; sleep 1 \
 	&& /usr/local/bin/plugins.sh $JENKINS_HOME/plugins.txt
 
