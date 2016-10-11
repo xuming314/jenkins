@@ -3,7 +3,7 @@ version: '2'
 services:
   server:
     build: .
-    image: jenkins:latest #镜像名称
+    image: do5173/jenkins:latest #镜像名称
     container_name: jenkins #容器名称
     ports:
       - "8081:8080"
