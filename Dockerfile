@@ -1,4 +1,4 @@
-FROM ubuntu:latest
+FROM ubuntu:14.04
 
 # Let's start with some basic stuff.
 RUN apt-get update -qq && apt-get install -qqy \
