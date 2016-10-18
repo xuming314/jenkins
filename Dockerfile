@@ -52,7 +52,7 @@ RUN chmod +x /usr/local/bin/plugins.sh; sleep 1 \
 
 
 # Make the jenkins user a sudoer
-RUN echo "jenkins ALL=NOPASSWD: ALL" >> /etc/sudoers
+RUN echo "jenkins ALL=(ALL) ALL" >> /etc/sudoers
 
 # Install jobs & setup ownership & links
 RUN chown -R jenkins:jenkins /var/lib/jenkins
